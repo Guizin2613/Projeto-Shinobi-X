@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Criador Ninja - Project Shinobi X</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <header>
+
+        <h1>🥷 CRIADOR NINJA 🥷</h1>
+
+        <h2>PROJECT SHINOBI X</h2>
+
+        <p>
+            Crie seu próprio ninja e comece sua jornada!
+        </p>
+
+    </header>
+
+
+
+    <main>
+
+
+        <section class="ninja-creator">
+
+
+            <h2>⚔️ CRIAÇÃO DO NINJA</h2>
+
+
+            <p class="creator-description">
+
+                Preencha os dados abaixo para criar seu personagem.
+
+            </p>
+
+
+
+            <form method="POST" action="/criador-ninja">
+
+
+                <!-- NOME -->
+
+                <div class="form-group">
+
+                    <label for="nome">
+                        🥷 Nome do Ninja
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="nome"
+                        name="nome"
+                        placeholder="Digite o nome do ninja"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- VILA -->
+
+                <div class="form-group">
+
+                    <label for="vila">
+                        🏯 Vila Ninja
+                    </label>
+
+
+                    <select
+                        id="vila"
+                        name="vila"
+                        required
+                    >
+
+                        <option value="">
+                            Escolha sua vila
+                        </option>
+
+                        <option value="Konoha">
+                            🍃 Konoha
+                        </option>
+
+                        <option value="Suna">
+                            🏜️ Suna
+                        </option>
+
+                        <option value="Kiri">
+                            🌫️ Kiri
+                        </option>
+
+                        <option value="Iwa">
+                            🪨 Iwa
+                        </option>
+
+                        <option value="Kumo">
+                            ⚡ Kumo
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- CLÃ -->
+
+                <div class="form-group">
+
+                    <label for="cla">
+                        👁️ Clã
+                    </label>
+
+
+                    <select
+                        id="cla"
+                        name="cla"
+                        required
+                        onchange="mostrarOutroCla()"
+                    >
+
+                        <option value="">
+                            Escolha seu clã
+                        </option>
+
+                        <option value="Uchiha">
+                            🔥 Uchiha
+                        </option>
+
+                        <option value="Hyuga">
+                            👁️ Hyuga
+                        </option>
+
+                        <option value="Uzumaki">
+                            🌀 Uzumaki
+                        </option>
+
+                        <option value="Nara">
+                            🦌 Nara
+                        </option>
+
+                        <option value="Senju">
+                            🌳 Senju
+                        </option>
+
+                        <option value="Outro">
+                            ❓ Outro
+                        </option>
+
+                    </select>
+
+
+                    <!-- CLÃ PERSONALIZADO -->
+
+                    <div
+                        id="outro-cla-container"
+                        style="display: none; margin-top: 15px;"
+                    >
+
+                        <label for="outro_cla">
+                            ✏️ Nome do seu clã
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="outro_cla"
+                            name="outro_cla"
+                            placeholder="Digite o nome do clã"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ELEMENTO -->
+
+                <div class="form-group">
+
+                    <label for="elemento">
+                        ⚡ Elemento de Chakra
+                    </label>
+
+
+                    <select
+                        id="elemento"
+                        name="elemento"
+                        required
+                    >
+
+                        <option value="">
+                            Escolha seu elemento
+                        </option>
+
+                        <option value="Fogo">
+                            🔥 Fogo
+                        </option>
+
+                        <option value="Água">
+                            💧 Água
+                        </option>
+
+                        <option value="Raio">
+                            ⚡ Raio
+                        </option>
+
+                        <option value="Vento">
+                            🌪️ Vento
+                        </option>
+
+                        <option value="Terra">
+                            🪨 Terra
+                        </option>
+
+                        <option value="Cristal">
+                            💎 Cristal
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- CRIAR -->
+
+                <button
+                    type="submit"
+                    class="create-button"
+                >
+
+                    🥷 CRIAR MEU NINJA
+
+                </button>
+
+
+            </form>
+
+
+        </section>
+
+
+
+        <section class="menu-section">
+
+
+            <a
+                href="/"
+                class="menu-button"
+            >
+
+                🏠 VOLTAR PARA A CENTRAL
+
+            </a>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <footer>
+
+        <p>
+            🍥 PROJECT SHINOBI X
+        </p>
+
+        <p>
+            Sistema Ninja em desenvolvimento.
+        </p>
+
+    </footer>
+
+
+</div>
+
+
+
+<script>
+
+function mostrarOutroCla() {
+
+    const cla = document.getElementById("cla");
+
+    const campo = document.getElementById("outro-cla-container");
+
+    const input = document.getElementById("outro_cla");
+
+
+    if (cla.value === "Outro") {
+
+        campo.style.display = "block";
+
+        input.required = true;
+
+    } else {
+
+        campo.style.display = "none";
+
+        input.required = false;
+
+        input.value = "";
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>

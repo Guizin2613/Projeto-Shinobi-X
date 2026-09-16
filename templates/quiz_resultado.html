@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Resultado - Quiz Shinobi X</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- ================================= -->
+    <!-- CABEÇALHO -->
+    <!-- ================================= -->
+
+    <header>
+
+        <h1>
+            🏆 RESULTADO DO QUIZ 🏆
+        </h1>
+
+        <h2>
+            🍥 QUIZ SHINOBI X 🍥
+        </h2>
+
+    </header>
+
+
+    <!-- ================================= -->
+    <!-- RESULTADO -->
+    <!-- ================================= -->
+
+    <main>
+
+        <section class="quiz-result">
+
+
+            <div class="result-icon">
+
+                🥷
+
+            </div>
+
+
+            <h2>
+
+                SEU RESULTADO
+
+            </h2>
+
+
+            <div class="score">
+
+                {{ pontos }} / 5
+
+            </div>
+
+
+            <p class="result-message">
+
+                {{ mensagem }}
+
+            </p>
+
+
+            <div class="rank-box">
+
+
+                <p>
+
+                    SEU RANK
+
+                </p>
+
+
+                <h1>
+
+                    {{ rank }}
+
+                </h1>
+
+
+            </div>
+
+
+            <!-- ================================= -->
+            <!-- BOTÕES -->
+            <!-- ================================= -->
+
+            <div class="result-buttons">
+
+
+                <a
+                    href="/quiz"
+                    class="menu-button"
+                >
+
+                    🔄 JOGAR NOVAMENTE
+
+                </a>
+
+
+                <a
+                    href="/"
+                    class="menu-button"
+                >
+
+                    🏠 VOLTAR PARA A CENTRAL
+
+                </a>
+
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- ================================= -->
+    <!-- RODAPÉ -->
+    <!-- ================================= -->
+
+    <footer>
+
+        <p>
+            🍥 PROJECT SHINOBI X
+        </p>
+
+        <p>
+            Resultado do Quiz Shinobi
+        </p>
+
+    </footer>
+
+
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gerador de Jutsus - Project Shinobi X</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- ================================= -->
+    <!-- CABEÇALHO -->
+    <!-- ================================= -->
+
+    <header>
+
+        <h1>⚡ GERADOR DE JUTSUS ⚡</h1>
+
+        <h2>PROJECT SHINOBI X</h2>
+
+        <p>
+            Crie seu próprio jutsu!
+        </p>
+
+    </header>
+
+
+
+    <main>
+
+
+        <!-- ================================= -->
+        <!-- GERADOR -->
+        <!-- ================================= -->
+
+        <section class="ninja-creator">
+
+
+            <h2>🥷 CRIAÇÃO DO JUTSU</h2>
+
+
+            <p class="creator-description">
+
+                Escolha o nome e o elemento do seu jutsu.
+
+            </p>
+
+
+
+            <form method="POST" action="/gerador-jutsu">
+
+
+                <!-- NOME DO JUTSU -->
+
+                <div class="form-group">
+
+                    <label for="nome">
+
+                        ⚡ Nome do Jutsu
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="nome"
+                        name="nome"
+                        placeholder="Digite o nome do jutsu"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- ELEMENTO -->
+
+                <div class="form-group">
+
+                    <label for="elemento">
+
+                        🌪️ Elemento
+
+                    </label>
+
+
+                    <select
+                        id="elemento"
+                        name="elemento"
+                        required
+                    >
+
+                        <option value="">
+
+                            Escolha o elemento
+
+                        </option>
+
+
+                        <option value="1">
+
+                            🔥 Fogo
+
+                        </option>
+
+
+                        <option value="2">
+
+                            💧 Água
+
+                        </option>
+
+
+                        <option value="3">
+
+                            ⚡ Raio
+
+                        </option>
+
+
+                        <option value="4">
+
+                            🌪️ Vento
+
+                        </option>
+
+
+                        <option value="5">
+
+                            🪨 Terra
+
+                        </option>
+
+
+                        <option value="6">
+
+                            💎 Cristal
+
+                        </option>
+
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- BOTÃO -->
+
+                <button
+                    type="submit"
+                    class="create-button"
+                >
+
+                    ⚡ CRIAR JUTSU
+
+                </button>
+
+
+            </form>
+
+
+        </section>
+
+
+
+        <!-- ================================= -->
+        <!-- VOLTAR -->
+        <!-- ================================= -->
+
+        <section class="menu-section">
+
+
+            <a
+                href="/"
+                class="menu-button"
+            >
+
+                🏠 VOLTAR PARA A CENTRAL
+
+            </a>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ================================= -->
+    <!-- RODAPÉ -->
+    <!-- ================================= -->
+
+    <footer>
+
+        <p>
+
+            🍥 PROJECT SHINOBI X
+
+        </p>
+
+
+        <p>
+
+            Sistema Ninja em desenvolvimento.
+
+        </p>
+
+    </footer>
+
+
+</div>
+
+
+</body>
+
+</html>

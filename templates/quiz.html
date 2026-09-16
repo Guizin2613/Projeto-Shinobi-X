@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Quiz Shinobi X</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- ================================= -->
+    <!-- CABEÇALHO -->
+    <!-- ================================= -->
+
+    <header>
+
+        <h1>
+            🍥 QUIZ SHINOBI X 🍥
+        </h1>
+
+        <h2>
+            🧠 TESTE SEUS CONHECIMENTOS
+        </h2>
+
+        <p>
+            5 perguntas foram sorteadas para você!
+        </p>
+
+    </header>
+
+
+    <!-- ================================= -->
+    <!-- QUIZ -->
+    <!-- ================================= -->
+
+    <main>
+
+        <form
+            method="POST"
+            action="/quiz-resultado"
+            class="quiz-form"
+        >
+
+
+            {% for pergunta in perguntas %}
+
+                {% set numero_pergunta = loop.index0 %}
+
+
+                <section class="quiz-question">
+
+
+                    <h2>
+
+                        Pergunta {{ loop.index }}/5
+
+                    </h2>
+
+
+                    <h3>
+
+                        {{ pergunta.pergunta }}
+
+                    </h3>
+
+
+                    <div class="quiz-options">
+
+
+                        {% for opcao in pergunta.opcoes %}
+
+
+                            <label class="quiz-option">
+
+
+                                <input
+                                    type="radio"
+                                    name="pergunta_{{ numero_pergunta }}"
+                                    value="{{ opcao.split(' - ')[0] }}"
+                                    required
+                                >
+
+
+                                <span>
+
+                                    {{ opcao }}
+
+                                </span>
+
+
+                            </label>
+
+
+                        {% endfor %}
+
+
+                    </div>
+
+
+                </section>
+
+
+            {% endfor %}
+
+
+            <!-- ================================= -->
+            <!-- BOTÃO FINAL -->
+            <!-- ================================= -->
+
+            <div class="quiz-submit">
+
+                <button
+                    type="submit"
+                    class="menu-button"
+                >
+
+                    🏆 FINALIZAR QUIZ
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+
+        <!-- ================================= -->
+        <!-- VOLTAR -->
+        <!-- ================================= -->
+
+        <div class="quiz-back">
+
+            <a
+                href="/"
+                class="menu-button"
+            >
+
+                🏠 VOLTAR PARA A CENTRAL
+
+            </a>
+
+        </div>
+
+
+    </main>
+
+
+    <!-- ================================= -->
+    <!-- RODAPÉ -->
+    <!-- ================================= -->
+
+    <footer>
+
+        <p>
+            🍥 PROJECT SHINOBI X
+        </p>
+
+        <p>
+            Quiz Shinobi
+        </p>
+
+    </footer>
+
+
+</div>
+
+
+</body>
+
+</html>

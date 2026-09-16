@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ninja Criado - Project Shinobi X</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <header>
+
+        <h1>🥷 NINJA CRIADO! 🥷</h1>
+
+        <h2>PROJECT SHINOBI X</h2>
+
+        <p>
+            Sua jornada ninja acaba de começar!
+        </p>
+
+    </header>
+
+
+
+    <main>
+
+
+        <section class="ninja-result">
+
+
+            <div class="success-title">
+
+                <h2>
+                    🍥 NINJA CRIADO COM SUCESSO!
+                </h2>
+
+                <p>
+                    Prepare-se para sua jornada, shinobi.
+                </p>
+
+            </div>
+
+
+
+            <div class="ninja-card">
+
+
+                <div class="ninja-card-header">
+
+                    <h2>
+                        🥷 FICHA DO NINJA
+                    </h2>
+
+                </div>
+
+
+
+                <div class="ninja-info">
+
+
+                    <div class="info-item">
+
+                        <span>
+                            🥷 Nome
+                        </span>
+
+                        <strong>
+                            {{ ninja.nome }}
+                        </strong>
+
+                    </div>
+
+
+
+                    <div class="info-item">
+
+                        <span>
+                            🏯 Vila
+                        </span>
+
+                        <strong>
+                            {{ ninja.vila }}
+                        </strong>
+
+                    </div>
+
+
+
+                    <div class="info-item">
+
+                        <span>
+                            👁️ Clã
+                        </span>
+
+                        <strong>
+                            {{ ninja.cla }}
+                        </strong>
+
+                    </div>
+
+
+
+                    <div class="info-item">
+
+                        <span>
+                            ⚡ Elemento
+                        </span>
+
+                        <strong>
+                            {{ ninja.elemento }}
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="journey-message">
+
+                    <p>
+                        ⚔️ {{ ninja.nome }} acaba de iniciar sua jornada ninja!
+                    </p>
+
+                    <p>
+                        Boa sorte em sua missão!
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- REGISTRAR NINJA -->
+
+            <form
+                method="POST"
+                action="/registrar-ninja"
+                class="register-form"
+            >
+
+                <input
+                    type="hidden"
+                    name="nome"
+                    value="{{ ninja.nome }}"
+                >
+
+                <input
+                    type="hidden"
+                    name="vila"
+                    value="{{ ninja.vila }}"
+                >
+
+                <input
+                    type="hidden"
+                    name="cla"
+                    value="{{ ninja.cla }}"
+                >
+
+                <input
+                    type="hidden"
+                    name="elemento"
+                    value="{{ ninja.elemento }}"
+                >
+
+
+                <button
+                    type="submit"
+                    class="create-button"
+                >
+
+                    📜 REGISTRAR NINJA
+
+                </button>
+
+
+            </form>
+
+
+
+            <div class="result-buttons">
+
+
+                <a
+                    href="/criador-ninja"
+                    class="menu-button"
+                >
+
+                    🔄 CRIAR OUTRO NINJA
+
+                </a>
+
+
+                <a
+                    href="/"
+                    class="menu-button"
+                >
+
+                    🏠 VOLTAR PARA A CENTRAL
+
+                </a>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <footer>
+
+        <p>
+            🍥 PROJECT SHINOBI X
+        </p>
+
+    </footer>
+
+
+</div>
+
+
+</body>
+
+</html>

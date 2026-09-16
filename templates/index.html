@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Project Shinobi X</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- ================================= -->
+    <!-- CABEÇALHO -->
+    <!-- ================================= -->
+
+    <header>
+
+        <h1>
+            🍥 PROJECT SHINOBI X 🍥
+        </h1>
+
+        <h2>
+            🥷 CENTRAL SHINOBI
+        </h2>
+
+        <p>
+            Bem-vindo à Central Ninja!
+        </p>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- ================================= -->
+        <!-- STATUS -->
+        <!-- ================================= -->
+
+        <div class="status-container">
+
+
+            <div class="status-card">
+
+                <h3>
+                    🟢 Sistema
+                </h3>
+
+                <p>
+                    Online
+                </p>
+
+            </div>
+
+
+            <div class="status-card">
+
+                <h3>
+                    🥷 Ninjas
+                </h3>
+
+                <p>
+
+                    {{ ninjas|length }}
+
+                    {% if ninjas|length == 1 %}
+                        registrado
+                    {% else %}
+                        registrados
+                    {% endif %}
+
+                </p>
+
+            </div>
+
+
+            <div class="status-card">
+
+                <h3>
+                    ⚡ Jutsus
+                </h3>
+
+                <p>
+
+                    {{ jutsus|length }}
+
+                    {% if jutsus|length == 1 %}
+                        registrado
+                    {% else %}
+                        registrados
+                    {% endif %}
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ================================= -->
+        <!-- MENU PRINCIPAL -->
+        <!-- ================================= -->
+
+        <section class="menu-section">
+
+            <h2>
+                ⚔️ MENU SHINOBI
+            </h2>
+
+
+            <div class="menu">
+
+
+                <a
+                    href="/criador-ninja"
+                    class="menu-button"
+                >
+
+                    🥷 Criador Ninja
+
+                </a>
+
+
+                <a
+                    href="/gerador-jutsu"
+                    class="menu-button"
+                >
+
+                    ⚡ Gerador de Jutsus
+
+                </a>
+
+
+                <a
+                    href="/quiz"
+                    class="menu-button"
+                >
+
+                    🧠 Quiz Shinobi
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================= -->
+        <!-- NINJAS REGISTRADOS -->
+        <!-- ================================= -->
+
+        <section class="registered-ninjas">
+
+
+            <h2>
+                🥷 Ninjas Registrados
+            </h2>
+
+
+            {% if ninjas %}
+
+
+                <div class="ninja-list">
+
+
+                    {% for ninja in ninjas %}
+
+
+                        <div class="registered-ninja-card">
+
+
+                            <h3>
+
+                                🥷 {{ ninja.nome }} {{ ninja.cla }}
+
+                            </h3>
+
+
+                            <p>
+
+                                🏯 Vila: {{ ninja.vila }}
+
+                            </p>
+
+
+                            <p>
+
+                                ⚡ Elemento: {{ ninja.elemento }}
+
+                            </p>
+
+
+                            <!-- APAGAR NINJA -->
+
+                            <form
+                                method="POST"
+                                action="/apagar-ninja/{{ loop.index0 }}"
+                                onsubmit="event.preventDefault(); abrirConfirmacao(this, 'ninja');"
+                            >
+
+                                <button
+                                    type="submit"
+                                    class="delete-button"
+                                >
+
+                                    🗑️ APAGAR
+
+                                </button>
+
+                            </form>
+
+
+                        </div>
+
+
+                    {% endfor %}
+
+
+                </div>
+
+
+            {% else %}
+
+
+                <p class="no-ninjas">
+
+                    Nenhum ninja registrado ainda.
+
+                </p>
+
+
+            {% endif %}
+
+
+        </section>
+
+
+
+        <!-- ================================= -->
+        <!-- JUTSUS CRIADOS -->
+        <!-- ================================= -->
+
+        <section class="registered-jutsus">
+
+
+            <h2>
+                ⚡ Jutsus Criados
+            </h2>
+
+
+            {% if jutsus %}
+
+
+                <div class="jutsu-list">
+
+
+                    {% for jutsu in jutsus %}
+
+
+                        <div class="registered-jutsu-card">
+
+
+                            <h3>
+
+                                ⚡ {{ jutsu.nome }}
+
+                            </h3>
+
+
+                            <p>
+
+                                🌪️ Elemento:
+                                {{ jutsu.elemento }}
+
+                            </p>
+
+
+                            <strong>
+
+                                ESTILO {{ jutsu.elemento.upper() }}:
+                                {{ jutsu.nome.upper() }}
+
+                            </strong>
+
+
+                            <!-- APAGAR JUTSU -->
+
+                            <form
+                                method="POST"
+                                action="/apagar-jutsu/{{ loop.index0 }}"
+                                onsubmit="event.preventDefault(); abrirConfirmacao(this, 'jutsu');"
+                            >
+
+                                <button
+                                    type="submit"
+                                    class="delete-button"
+                                >
+
+                                    🗑️ APAGAR
+
+                                </button>
+
+                            </form>
+
+
+                        </div>
+
+
+                    {% endfor %}
+
+
+                </div>
+
+
+            {% else %}
+
+
+                <p class="no-jutsus">
+
+                    Nenhum jutsu registrado ainda.
+
+                </p>
+
+
+            {% endif %}
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ================================= -->
+    <!-- RODAPÉ -->
+    <!-- ================================= -->
+
+    <footer>
+
+        <p>
+            🍥 PROJECT SHINOBI X
+        </p>
+
+        <p>
+            Sistema Ninja em desenvolvimento.
+        </p>
+
+    </footer>
+
+
+</div>
+
+
+
+<!-- ================================= -->
+<!-- JANELA DE CONFIRMAÇÃO -->
+<!-- ================================= -->
+
+<div
+    id="delete-modal"
+    class="delete-modal"
+>
+
+
+    <div class="delete-box">
+
+
+        <h2>
+            ⚠️ CONFIRMAR EXCLUSÃO
+        </h2>
+
+
+        <p id="delete-message">
+
+            Tem certeza que deseja apagar este registro?
+
+        </p>
+
+
+        <div class="delete-buttons">
+
+
+            <button
+                type="button"
+                class="cancel-delete"
+                onclick="fecharConfirmacao()"
+            >
+
+                ❌ CANCELAR
+
+            </button>
+
+
+            <button
+                type="button"
+                class="confirm-delete"
+                onclick="confirmarExclusao()"
+            >
+
+                🗑️ APAGAR
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- ================================= -->
+<!-- JAVASCRIPT -->
+<!-- ================================= -->
+
+<script>
+
+
+let formularioParaApagar = null;
+
+
+
+function abrirConfirmacao(formulario, tipo) {
+
+
+    formularioParaApagar = formulario;
+
+
+    const modal =
+        document.getElementById("delete-modal");
+
+
+    const mensagem =
+        document.getElementById("delete-message");
+
+
+    if (tipo === "ninja") {
+
+
+        mensagem.textContent =
+            "Tem certeza que deseja apagar este ninja?";
+
+
+    } else {
+
+
+        mensagem.textContent =
+            "Tem certeza que deseja apagar este jutsu?";
+
+
+    }
+
+
+    modal.classList.add("active");
+
+
+}
+
+
+
+function fecharConfirmacao() {
+
+
+    formularioParaApagar = null;
+
+
+    document
+        .getElementById("delete-modal")
+        .classList.remove("active");
+
+
+}
+
+
+
+function confirmarExclusao() {
+
+
+    if (formularioParaApagar) {
+
+        formularioParaApagar.submit();
+
+    }
+
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

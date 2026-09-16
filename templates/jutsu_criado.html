@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Jutsu Criado - Project Shinobi X
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <header>
+
+        <h1>
+            ⚡ JUTSU CRIADO ⚡
+        </h1>
+
+        <p>
+            Seu novo jutsu foi desenvolvido!
+        </p>
+
+    </header>
+
+
+    <main>
+
+
+        <section class="jutsu-created-card">
+
+
+            <!-- ================================= -->
+            <!-- INFORMAÇÕES -->
+            <!-- ================================= -->
+
+            <div class="jutsu-created-info">
+
+
+                <span class="jutsu-label">
+
+                    ESTILO {{ elemento.upper() }}
+
+                </span>
+
+
+                <h2>
+
+                    {{ nome.upper() }}
+
+                </h2>
+
+
+                <p>
+
+                    ⚡ Elemento:
+
+                    <strong>
+                        {{ elemento }}
+                    </strong>
+
+                </p>
+
+
+                <form
+                    method="POST"
+                    action="/registrar-jutsu"
+                >
+
+
+                    <input
+                        type="hidden"
+                        name="nome"
+                        value="{{ nome }}"
+                    >
+
+
+                    <input
+                        type="hidden"
+                        name="elemento"
+                        value="{{ elemento }}"
+                    >
+
+
+                    <button
+                        type="submit"
+                        class="menu-button"
+                    >
+
+                        📜 REGISTRAR JUTSU
+
+                    </button>
+
+
+                </form>
+
+
+            </div>
+
+
+            <!-- ================================= -->
+            <!-- IMAGEM -->
+            <!-- ================================= -->
+
+            <div class="jutsu-created-image">
+
+
+                <img
+                    src="{{ url_for('imagem_jutsu', nome=imagem) }}"
+                    alt="Imagem do jutsu {{ nome }}"
+                    onerror="mostrarErroImagem()"
+                >
+
+
+                <div
+                    id="imagem-indisponivel"
+                    class="jutsu-no-image"
+                    style="display: none;"
+                >
+
+                    <span>
+                        ⚡
+                    </span>
+
+                    <p>
+                        IMAGEM DO JUTSU
+                    </p>
+
+                    <small>
+                        Imagem ainda não encontrada.
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ================================= -->
+        <!-- BOTÕES -->
+        <!-- ================================= -->
+
+        <div class="result-buttons">
+
+
+            <a
+                href="/gerador-jutsu"
+                class="menu-button"
+            >
+
+                🔄 CRIAR OUTRO JUTSU
+
+            </a>
+
+
+            <a
+                href="/"
+                class="menu-button"
+            >
+
+                🏠 VOLTAR PARA A CENTRAL
+
+            </a>
+
+
+        </div>
+
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            🍥 PROJECT SHINOBI X
+        </p>
+
+        <p>
+            Sistema Ninja em desenvolvimento.
+        </p>
+
+    </footer>
+
+
+</div>
+
+
+<script>
+
+function mostrarErroImagem() {
+
+    document.querySelector(
+        ".jutsu-created-image img"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "imagem-indisponivel"
+    ).style.display = "flex";
+
+}
+
+</script>
+
+
+</body>
+
+</html>
