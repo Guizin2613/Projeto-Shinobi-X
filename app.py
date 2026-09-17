@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, session, redirect, send_from_directory
+from werkzeug.security import generate_password_hash, check_password_hash
 import random
 import os
 
@@ -7,6 +8,91 @@ app = Flask(__name__)
 
 app.secret_key = os.environ.get('SECRET_KEY','project_shinobi_X')
 
+usuarios = {}
+
+
+# ==========================================================
+# CADASTRO
+# ==========================================================
+
+@app.route(
+    "/cadastro",
+    methods=["GET", "POST"]
+)
+def cadastro():
+
+    if request.method == "POST":
+
+        usuario = request.form["usuario"]
+
+        senha = request.form["senha"]
+
+        if usuario in usuarios:
+
+            return "Usuário já existe!"
+
+        senha_hash = generate_password_hash(senha)
+
+        usuarios[usuario] = senha_hash
+
+        return redirect("/login")
+
+    return render_template(
+        "cadastro.html"
+    )
+
+
+# ==========================================================
+# LOGIN
+# ==========================================================
+
+@app.route(
+    "/login",
+    methods=["GET", "POST"]
+)
+def login():
+
+    if request.method == "POST":
+
+        usuario = request.form["usuario"]
+
+        senha = request.form["senha"]
+
+        if usuario not in usuarios:
+
+            return "Usuário ou senha incorretos!"
+
+        senha_hash = usuarios[usuario]
+
+        if check_password_hash(
+            senha_hash,
+            senha
+        ):
+
+            session["usuario"] = usuario
+
+            return redirect("/")
+
+        return "Usuário ou senha incorretos!"
+
+    return render_template(
+        "login.html"
+    )
+
+
+# ==========================================================
+# LOGOUT
+# ==========================================================
+
+@app.route("/logout")
+def logout():
+
+    session.pop(
+        "usuario",
+        None
+    )
+
+    return redirect("/login")
 
 # ==========================================================
 # PERGUNTAS DO QUIZ
