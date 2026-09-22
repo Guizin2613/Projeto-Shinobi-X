@@ -385,22 +385,8 @@ def imagem_jutsu(nome):
 @app.route("/")
 def inicio():
 
-    ninjas = session.get(
-        "ninjas",
-        []
-    )
 
-    jutsus = session.get(
-        "jutsus",
-        []
-    )
-
-    return render_template(
-        "index.html",
-        ninjas=ninjas,
-        jutsus=jutsus
-    )
-
+    return redirect("/cadastro")
 
 # ==========================================================
 # CRIADOR NINJA
