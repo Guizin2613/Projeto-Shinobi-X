@@ -1,0 +1,25 @@
+# ==========================================================
+# PÁGINA INICIAL
+# ==========================================================
+
+@app.route("/")
+def inicio():
+
+
+    return redirect("/cadastro")
+
+    ninjas = session.get(
+        "ninjas",
+        []
+    )
+
+    jutsus = session.get(
+        "jutsus",
+        []
+    )
+
+    return render_template(
+        "index.html",
+        ninjas=ninjas,
+        jutsus=jutsus
+    )
