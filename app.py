@@ -386,7 +386,28 @@ def imagem_jutsu(nome):
 def inicio():
 
 
-    return redirect("/cadastro")
+    if "usuario" not in session:
+
+
+        return redirect("/cadastro")
+
+
+
+    ninjas = session.get(
+        "ninjas",
+        []
+    )
+
+    jutsus = session.get(
+        "ninjas",
+        []
+    )        
+ 
+    return render_template(
+        "index.html",
+        ninjas=ninjas,
+        jutsus=jutsus
+    )
 
 # ==========================================================
 # CRIADOR NINJA
