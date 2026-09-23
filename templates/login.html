@@ -1,25 +1,66 @@
-# ==========================================================
-# PÁGINA INICIAL
-# ==========================================================
+<!DOCTYPE html>
+<html lang="pt-br">
 
-@app.route("/")
-def inicio():
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Projeto Shinobi X</title>
 
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
 
-    return redirect("/cadastro")
+<body class="cadastro-page">
 
-    ninjas = session.get(
-        "ninjas",
-        []
-    )
+    <div class="cadastro-container">
 
-    jutsus = session.get(
-        "jutsus",
-        []
-    )
+        <h1>PROJETO SHINOBI X</h1>
 
-    return render_template(
-        "index.html",
-        ninjas=ninjas,
-        jutsus=jutsus
-    )
+        <p class="subtitulo">
+            Entre na sua conta ninja
+        </p>
+
+        <form method="POST">
+
+            <label>
+                Usuário
+            </label>
+
+            <input
+                type="text"
+                name="usuario"
+                placeholder="Digite seu usuário"
+                required
+            >
+
+            <label>
+                Senha
+            </label>
+
+            <input
+                type="password"
+                name="senha"
+                placeholder="Digite sua senha"
+                required
+            >
+
+            <button type="submit">
+                ENTRAR
+            </button>
+
+        </form>
+
+        <div class="login">
+
+            Ainda não possui uma conta?
+
+            <a href="/cadastro">
+                Criar conta
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
