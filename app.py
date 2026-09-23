@@ -385,12 +385,9 @@ def imagem_jutsu(nome):
 @app.route("/")
 def inicio():
 
-
     if "usuario" not in session:
 
-
         return redirect("/cadastro")
-
 
 
     ninjas = session.get(
@@ -399,10 +396,11 @@ def inicio():
     )
 
     jutsus = session.get(
-        "ninjas",
+        "jutsus",
         []
-    )        
- 
+    )
+
+
     return render_template(
         "index.html",
         ninjas=ninjas,
