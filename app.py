@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, session, redirect, send_from_
 from werkzeug.security import generate_password_hash, check_password_hash
 import random
 import os
+import sqlite3
 
 
 app = Flask(__name__)
@@ -9,6 +10,37 @@ app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY','project_shinobi_X')
 
 usuarios = {}
+
+
+
+def conectar_banco():
+    conexao = sqlite3.connect("usuarios.db")
+    return conexao
+
+
+
+def criar_banco():
+
+    conexao = conectar_banco()
+
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS usuarios (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            usuario TEXT UNIQUE NOT NULL,
+            senha TEXT NOT NULL
+        )
+    """)
+
+    conexao.commit()
+
+    conexao.close()
+
+
+
+criar_banco()
+
 
 
 # ==========================================================
