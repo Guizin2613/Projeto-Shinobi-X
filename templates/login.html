@@ -20,9 +20,23 @@
         </p>
 
         {% if erro %}
-            <p class="erro-login">
-                {{ erro }}
-            </p>
+
+        <div class="erro-modal">
+
+            <button
+                type="button"
+                class="fechar-erro"
+                onclick="this.parentElement.style.display='none'"
+            >
+                ×
+            </button>
+
+            <h2>
+                USUÁRIO OU SENHA INCORRETOS
+            </h2>
+
+        </div>
+
         {% endif %}        
 
         <form method="POST">
