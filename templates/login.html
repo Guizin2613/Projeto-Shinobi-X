@@ -19,6 +19,12 @@
             Entre na sua conta ninja
         </p>
 
+        {% if erro %}
+            <p class="erro-login">
+                {{ erro }}
+            </p>
+        {% endif %}        
+
         <form method="POST">
 
             <label>

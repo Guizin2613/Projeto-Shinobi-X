@@ -60,7 +60,11 @@ def login():
 
         if usuario not in usuarios:
 
-            return "Usuário ou senha incorretos!"
+
+            return render_template(
+                "login.html",
+                erro="Usuário ou senha incorretos!"
+            )
 
         senha_hash = usuarios[usuario]
 
@@ -73,11 +77,16 @@ def login():
 
             return redirect("/")
 
-        return "Usuário ou senha incorretos!"
+
+        return render_template(
+            "login.html",
+            erro="Usuário ou senha incorretos!"
+        )
+
 
     return render_template(
         "login.html"
-    )
+    )    
 
 
 # ==========================================================
