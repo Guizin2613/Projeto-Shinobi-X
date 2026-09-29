@@ -59,13 +59,33 @@ def cadastro():
 
         senha = request.form["senha"]
 
-        if usuario in usuarios:
+        senha_hash = generate_password_hash(senha)
+
+        conexao = conectar_banco()
+
+        cursor = conexao.cursor()
+
+        cursor.execute(
+            "SELECT usuario FROM usuarios WHERE usuario = ?",
+            (usuario,)
+        )
+
+        usuario_existente = cursor.fetchone()
+
+        if usuario_existente:
+
+            conexao.close()
 
             return "Usuário já existe!"
 
-        senha_hash = generate_password_hash(senha)
+        cursor.execute(
+            "INSERT INTO usuarios (usuario, senha) VALUES (?, ?)",
+            (usuario, senha_hash)
+        )
 
-        usuarios[usuario] = senha_hash
+        conexao.commit()
+
+        conexao.close()
 
         return redirect("/login")
 
@@ -90,15 +110,27 @@ def login():
 
         senha = request.form["senha"]
 
-        if usuario not in usuarios:
+        conexao = conectar_banco()
 
+        cursor = conexao.cursor()
+
+        cursor.execute(
+            "SELECT senha FROM usuarios WHERE usuario = ?",
+            (usuario,)
+        )
+
+        resultado = cursor.fetchone()
+
+        conexao.close()
+
+        if resultado is None:
 
             return render_template(
                 "login.html",
                 erro="Usuário ou senha incorretos!"
             )
 
-        senha_hash = usuarios[usuario]
+        senha_hash = resultado[0]
 
         if check_password_hash(
             senha_hash,
@@ -109,12 +141,10 @@ def login():
 
             return redirect("/")
 
-
         return render_template(
             "login.html",
             erro="Usuário ou senha incorretos!"
         )
-
 
     return render_template(
         "login.html"
