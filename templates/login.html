@@ -1,85 +1,111 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Projeto Shinobi X</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Login Ninja | Projeto Shinobi X</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 </head>
 
-<body class="cadastro-page">
+<body class="auth-page">
 
-    <div class="cadastro-container">
+    <main class="auth-container">
 
-        <h1>PROJETO SHINOBI X</h1>
+        <div class="auth-symbol">忍</div>
 
-        <p class="subtitulo">
-            Entre na sua conta ninja
+        <p class="auth-brand">
+            PROJETO <span>SHINOBI X</span>
         </p>
+
+        <div class="auth-heading">
+
+            <p class="auth-kicker">A VILA ESTAVA ESPERANDO</p>
+
+            <h1>Que bom ter você de volta!</h1>
+
+            <p class="auth-subtitle">
+                Retome sua jornada ninja e continue construindo seu legado.
+            </p>
+
+        </div>
+
+        <div class="auth-divider"></div>
 
         {% if erro %}
 
-        <div class="erro-modal">
+        <div class="erro-modal" role="alert">
 
             <button
                 type="button"
                 class="fechar-erro"
+                aria-label="Fechar mensagem de erro"
                 onclick="this.parentElement.style.display='none'"
             >
                 ×
             </button>
 
-            <h2>
-                USUÁRIO OU SENHA INCORRETOS
-            </h2>
+            <h2>USUÁRIO OU SENHA INCORRETOS</h2>
+
+            <p>Confira seus dados e tente novamente.</p>
 
         </div>
 
-        {% endif %}        
+        {% endif %}
 
-        <form method="POST">
+        <form method="POST" action="{{ url_for('login') }}">
 
-            <label>
-                Usuário
-            </label>
+            <div class="auth-field">
 
-            <input
-                type="text"
-                name="usuario"
-                placeholder="Digite seu usuário"
-                required
-            >
+                <label for="usuario">Nome ninja</label>
 
-            <label>
-                Senha
-            </label>
+                <input
+                    type="text"
+                    id="usuario"
+                    name="usuario"
+                    placeholder="Digite seu nome ninja"
+                    autocomplete="username"
+                    required
+                >
 
-            <input
-                type="password"
-                name="senha"
-                placeholder="Digite sua senha"
-                required
-            >
+            </div>
 
-            <button type="submit">
-                ENTRAR
+            <div class="auth-field">
+
+                <label for="senha">Senha</label>
+
+                <input
+                    type="password"
+                    id="senha"
+                    name="senha"
+                    placeholder="Digite sua senha"
+                    autocomplete="current-password"
+                    required
+                >
+
+            </div>
+
+            <button class="auth-button" type="submit">
+                CONTINUAR JORNADA
+                <span aria-hidden="true">→</span>
             </button>
 
         </form>
 
-        <div class="login">
+        <p class="auth-switch">
+            Ainda não tem uma conta?
+            <a href="{{ url_for('cadastro') }}">Comece agora</a>
+        </p>
 
-            Ainda não possui uma conta?
+        <p class="auth-footer">
+            SEU CAMINHO NINJA CONTINUA.
+        </p>
 
-            <a href="/cadastro">
-                Criar conta
-            </a>
-
-        </div>
-
-    </div>
+    </main>
 
 </body>
 

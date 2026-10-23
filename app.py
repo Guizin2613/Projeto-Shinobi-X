@@ -532,8 +532,7 @@ def inicio():
 
 @app.route(
     "/criador-ninja",
-    methods=["GET", "POST"]
-)
+    methods=["GET", "POST"])
 @login_obrigatorio
 def criador_ninja():
 
@@ -552,7 +551,7 @@ def criador_ninja():
         elemento = request.form["elemento"]
 
 
-        ninja = {
+        ninja = {w
 
             "nome": nome,
             "vila": vila,

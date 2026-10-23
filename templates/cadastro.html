@@ -1,79 +1,91 @@
-```html
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Cadastro - Projeto Shinobi X</title>
+    <title>Cadastro Ninja | Projeto Shinobi X</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 </head>
 
+<body class="auth-page">
 
-<body class="cadastro-page">
+    <main class="auth-container">
 
+        <div class="auth-symbol">忍</div>
 
-    <div class="cadastro-container">
-
-        <h1>PROJETO SHINOBI X</h1>
-
-        <p class="subtitulo">
-            Crie sua conta ninja
+        <p class="auth-brand">
+            PROJETO <span>SHINOBI X</span>
         </p>
 
+        <div class="auth-heading">
 
-        <form method="POST">
+            <p class="auth-kicker">SUA HISTÓRIA COMEÇA AQUI</p>
 
-            <label>
-                Usuário
-            </label>
+            <h1>Bem-vindo, futuro ninja!</h1>
 
-            <input
-                type="text"
-                name="usuario"
-                placeholder="Digite seu usuário"
-                required
-            >
+            <p class="auth-subtitle">
+                Crie sua conta e comece sua jornada ninja.
+            </p>
 
+        </div>
 
-            <label>
-                Senha
-            </label>
+        <div class="auth-divider"></div>
 
-            <input
-                type="password"
-                name="senha"
-                placeholder="Digite sua senha"
-                required
-            >
+        <form method="POST" action="{{ url_for('cadastro') }}">
 
+            <div class="auth-field">
 
-            <button type="submit">
-                CRIAR CONTA
+                <label for="usuario">Nome ninja</label>
+
+                <input
+                    type="text"
+                    id="usuario"
+                    name="usuario"
+                    placeholder="Escolha seu nome ninja"
+                    autocomplete="username"
+                    required
+                >
+
+            </div>
+
+            <div class="auth-field">
+
+                <label for="senha">Senha</label>
+
+                <input
+                    type="password"
+                    id="senha"
+                    name="senha"
+                    placeholder="Crie uma senha"
+                    autocomplete="new-password"
+                    required
+                >
+
+            </div>
+
+            <button class="auth-button" type="submit">
+                CRIAR MINHA CONTA
+                <span aria-hidden="true">→</span>
             </button>
 
         </form>
 
+        <p class="auth-switch">
+            Já faz parte da vila?
+            <a href="{{ url_for('login') }}">Entrar na conta</a>
+        </p>
 
-        <div class="login">
+        <p class="auth-footer">
+            SUA JORNADA. SEU CAMINHO. SEU LEGADO.
+        </p>
 
-            Já possui uma conta?
-
-            <a href="/login">
-                Entrar
-            </a>
-
-        </div>
-
-    </div>
-
+    </main>
 
 </body>
 
 </html>
-```

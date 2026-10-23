@@ -1708,3 +1708,454 @@ footer p:first-child {
     }
 
 }
+
+
+
+/* ==========================================================
+   SHINOBI X — IDENTIDADE NINJA
+   LOGIN E CADASTRO
+========================================================== */
+
+.auth-page {
+    min-height: 100vh;
+    padding: 35px 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 0%,
+            rgba(0, 102, 255, 0.13),
+            transparent 55%
+        ),
+        radial-gradient(
+            ellipse at 100% 100%,
+            rgba(255, 0, 76, 0.08),
+            transparent 45%
+        ),
+        #08080d;
+
+    color: #f2f2f2;
+    font-family: Arial, sans-serif;
+}
+
+
+/* CARTÃO PRINCIPAL */
+
+.auth-container {
+    position: relative;
+
+    width: 100%;
+    max-width: 460px;
+
+    padding: 42px 38px 30px;
+
+    text-align: center;
+
+    background: rgba(17, 17, 27, 0.96);
+
+    border: 1px solid #29293a;
+    border-radius: 20px;
+
+    box-shadow:
+        0 20px 70px rgba(0, 0, 0, 0.45),
+        0 0 25px rgba(0, 102, 255, 0.08);
+
+    animation: authEntrance 0.6s ease both;
+}
+
+
+/* ENTRADA SUAVE */
+
+@keyframes authEntrance {
+
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* SÍMBOLO NINJA */
+
+.auth-symbol {
+    width: 62px;
+    height: 62px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 18px;
+
+    border: 1px solid rgba(0, 204, 255, 0.45);
+    border-radius: 18px;
+
+    background: #101725;
+
+    color: #00ccff;
+    font-size: 34px;
+    font-weight: bold;
+
+    box-shadow:
+        0 0 15px rgba(0, 102, 255, 0.18),
+        inset 0 0 12px rgba(0, 204, 255, 0.06);
+}
+
+
+/* MARCA */
+
+.auth-brand {
+    margin-bottom: 30px;
+
+    color: #a9a9bd;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.auth-brand span {
+    color: #ffffff;
+}
+
+
+/* TÍTULOS */
+
+.auth-heading {
+    margin-bottom: 26px;
+}
+
+.auth-kicker {
+    margin-bottom: 12px;
+
+    color: #00ccff;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.auth-heading h1 {
+    margin-bottom: 13px;
+
+    color: #ffffff;
+    font-size: 29px;
+    line-height: 1.25;
+
+    text-shadow: 0 0 18px rgba(0, 102, 255, 0.12);
+}
+
+.auth-subtitle {
+    color: #a6a6b8;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+/* DIVISÓRIA */
+
+.auth-divider {
+    height: 1px;
+    margin-bottom: 27px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #303045,
+        rgba(0, 204, 255, 0.55),
+        #303045,
+        transparent
+    );
+}
+
+
+/* FORMULÁRIO */
+
+.auth-container form {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+
+    text-align: left;
+}
+
+.auth-field {
+    margin-bottom: 21px;
+}
+
+.auth-field label {
+    display: block;
+    margin-bottom: 9px;
+
+    color: #e6e6f0;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+/* CAMPOS */
+
+.auth-field input {
+    display: block;
+
+    width: 100%;
+    min-height: 49px;
+    padding: 13px 15px;
+
+    border: 1px solid #303045;
+    border-radius: 9px;
+
+    background: #0b0b13;
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease;
+}
+
+.auth-field input::placeholder {
+    color: #69697d;
+}
+
+.auth-field input:focus {
+    border-color: #008cff;
+    background: #0d101b;
+
+    box-shadow:
+        0 0 0 3px rgba(0, 140, 255, 0.10),
+        0 0 15px rgba(0, 102, 255, 0.12);
+}
+
+
+/* BOTÃO PRINCIPAL */
+
+.auth-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    width: 100%;
+    min-height: 51px;
+    padding: 14px 18px;
+    margin-top: 8px;
+
+    border: 1px solid rgba(0, 204, 255, 0.35);
+    border-radius: 9px;
+
+    background: linear-gradient(
+        100deg,
+        #0758c9,
+        #087fcb
+    );
+
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    box-shadow: 0 5px 20px rgba(0, 102, 255, 0.16);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+.auth-button span {
+    font-size: 20px;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.auth-button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.12);
+
+    box-shadow:
+        0 8px 25px rgba(0, 102, 255, 0.25),
+        0 0 15px rgba(0, 204, 255, 0.08);
+}
+
+.auth-button:hover span {
+    transform: translateX(4px);
+}
+
+.auth-button:active {
+    transform: translateY(0);
+}
+
+
+/* LINK ENTRE LOGIN E CADASTRO */
+
+.auth-switch {
+    margin-top: 25px;
+
+    color: #9696aa;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.auth-switch a {
+    display: inline-block;
+    margin-left: 4px;
+
+    color: #00ccff;
+    font-weight: bold;
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.auth-switch a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+
+/* RODAPÉ */
+
+.auth-footer {
+    margin-top: 28px;
+    padding-top: 19px;
+
+    border-top: 1px solid #242433;
+
+    color: #66667b;
+    font-size: 9px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+
+/* MODAL DE ERRO DO LOGIN */
+
+.auth-container .erro-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+
+    width: min(380px, calc(100% - 32px));
+    padding: 35px 28px 28px;
+
+    transform: translate(-50%, -50%);
+
+    background: #11111b;
+
+    border: 2px solid #ff1744;
+    border-radius: 14px;
+
+    animation: bordaRGB 3s linear infinite;
+
+    box-shadow:
+        0 0 20px rgba(255, 23, 68, 0.18),
+        0 0 60px rgba(0, 0, 0, 0.8);
+
+    text-align: center;
+    z-index: 9999;
+}
+
+.auth-container .erro-modal h2 {
+    margin: 0 0 10px;
+
+    color: #ffffff;
+    font-size: 17px;
+    line-height: 1.5;
+}
+
+.auth-container .erro-modal p {
+    color: #b5b5c5;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* BOTÃO FECHAR DO MODAL */
+
+.auth-container .fechar-erro {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+
+    width: auto;
+    padding: 0;
+    margin: 0;
+
+    border: none;
+    background: transparent;
+
+    color: #aaa;
+    font-size: 25px;
+    line-height: 1;
+    font-weight: normal;
+
+    cursor: pointer;
+}
+
+.auth-container .fechar-erro:hover {
+    background: transparent;
+    color: #ffffff;
+}
+
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 500px) {
+
+    .auth-page {
+        padding: 20px 14px;
+    }
+
+    .auth-container {
+        padding: 32px 23px 25px;
+        border-radius: 15px;
+    }
+
+    .auth-heading h1 {
+        font-size: 25px;
+    }
+
+    .auth-brand {
+        letter-spacing: 2px;
+    }
+
+    .auth-symbol {
+        width: 55px;
+        height: 55px;
+        font-size: 30px;
+    }
+
+}
+
+
+/* RESPEITA A PREFERÊNCIA POR MENOS ANIMAÇÕES */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .auth-container {
+        animation: none;
+    }
+
+    .auth-button,
+    .auth-button span,
+    .auth-field input,
+    .auth-switch a {
+        transition: none;
+    }
+
+}
