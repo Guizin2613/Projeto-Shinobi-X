@@ -551,7 +551,7 @@ def criador_ninja():
         elemento = request.form["elemento"]
 
 
-        ninja = {w
+        ninja = {
 
             "nome": nome,
             "vila": vila,
