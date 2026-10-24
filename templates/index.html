@@ -187,90 +187,6 @@
         </section>
 
 
-
-        
-        <!-- ================================= -->
-        <!-- ESTATÍSTICAS SHINOBI -->
-        <!-- ================================= -->
-
-        <section class="menu-section">
-
-            <h2>
-                📊 ESTATÍSTICAS SHINOBI
-            </h2>
-
-            <div class="status-container">
-
-                <div class="status-card">
-
-                    <h3>
-                        🥷 Ninjas
-                    </h3>
-
-                    <p>
-                        {{ ninjas|length }}
-
-                        {% if ninjas|length == 1 %}
-                            registrado
-                        {% else %}
-                            registrados
-                        {% endif %}
-                    </p>
-
-                </div>
-
-                <div class="status-card">
-
-                    <h3>
-                        ⚡ Jutsus
-                    </h3>
-
-                    <p>
-                        {{ jutsus|length }}
-
-                        {% if jutsus|length == 1 %}
-                            registrado
-                        {% else %}
-                            registrados
-                        {% endif %}
-                    </p>
-
-                </div>
-
-                <div class="status-card">
-
-                    <h3>
-                        🏆 Melhor pontuação no quiz
-                    </h3>
-
-                    <p>
-                        {% if melhor_pontuacao >= 0 %}
-                            {{ melhor_pontuacao }}/5
-                        {% else %}
-                            Ainda não fez o quiz
-                        {% endif %}
-                    </p>
-
-                </div>
-
-                <div class="status-card">
-
-                    <h3>
-                        🍥 Rank Ninja
-                    </h3>
-
-                    <p>
-                        {{ melhor_rank }}
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
         <!-- ================================= -->
         <!-- NINJAS REGISTRADOS -->
         <!-- ================================= -->
@@ -489,6 +405,7 @@
             </div>
 
         </section>
+
 
 
     </main>
