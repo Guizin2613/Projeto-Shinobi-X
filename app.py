@@ -526,14 +526,13 @@ def imagem_jutsu(nome):
 # PÁGINA INICIAL
 # ==========================================================
 
+
 @app.route("/")
 @login_obrigatorio
 def inicio():
 
     if "usuario" not in session:
-
         return redirect("/cadastro")
-
 
     ninjas = session.get(
         "ninjas",
@@ -547,36 +546,41 @@ def inicio():
 
     conexao = conectar_banco()
 
-    cursor.execute(
-        """
-        SELECT melhor_pontuacao
-        FROM usuarios
-        WHERE usuario = %s
-        """,
-        (session["usuario"],)
-    )
+    try:
+        cursor = conexao.cursor()
 
-    resultado = cursor.fetchone()
+        cursor.execute(
+            """
+            SELECT melhor_pontuacao
+            FROM usuarios
+            WHERE usuario = %s
+            """,
+            (session["usuario"],)
+        )
 
-    melhor_pontuacao = resultado[0] if resultado else -1
+        resultado = cursor.fetchone()
 
-finally:
-    conexao.close()
+        melhor_pontuacao = (
+            resultado[0] if resultado else -1
+        )
 
-if melhor_pontuacao < 0:
-    melhor_rank = "AINDA NÃO CLASSIFICADO"
-else:
-    ranks = [
-        "ESTUDANTE",
-        "GENIN",
-        "CHUNNIN",
-        "JONIN",
-        "HOKAGE",
-        "SHINOBI"
-    ]
+    finally:
+        conexao.close()
 
-    melhor_rank = ranks[melhor_pontuacao]    
-    
+    if melhor_pontuacao < 0:
+        melhor_rank = "AINDA NÃO CLASSIFICADO"
+
+    else:
+        ranks = [
+            "ESTUDANTE",
+            "GENIN",
+            "CHUNNIN",
+            "JONIN",
+            "HOKAGE",
+            "SHINOBI"
+        ]
+
+        melhor_rank = ranks[melhor_pontuacao]
 
     return render_template(
         "index.html",
@@ -585,6 +589,7 @@ else:
         melhor_pontuacao=melhor_pontuacao,
         melhor_rank=melhor_rank
     )
+
 
 # ==========================================================
 # CRIADOR NINJA
