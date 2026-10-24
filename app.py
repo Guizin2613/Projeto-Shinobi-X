@@ -77,6 +77,11 @@ def criar_banco():
             )
         """)
 
+        cursor.execute("""
+            ALTER TABLE usuarios
+            ADD COLUMN IF NOT EXISTS melhor_pontuação INTEGER NOT NULL DEFAULT -1
+        """)
+
         conexao.commit()
 
     finally:
@@ -540,11 +545,45 @@ def inicio():
         []
     )
 
+    conexao = conectar_banco()
+
+    cursor.execute(
+        """
+        SELECT melhor_pontuacao
+        FROM usuarios
+        WHERE usuario = %s
+        """,
+        (session["usuario"],)
+    )
+
+    resultado = cursor.fetchone()
+
+    melhor_pontuacao = resultado[0] if resultado else -1
+
+finally:
+    conexao.close()
+
+if melhor_pontuacao < 0:
+    melhor_rank = "AINDA NÃO CLASSIFICADO"
+else:
+    ranks = [
+        "ESTUDANTE",
+        "GENIN",
+        "CHUNNIN",
+        "JONIN",
+        "HOKAGE",
+        "SHINOBI"
+    ]
+
+    melhor_rank = ranks[melhor_pontuacao]    
+    
 
     return render_template(
         "index.html",
         ninjas=ninjas,
-        jutsus=jutsus
+        jutsus=jutsus,
+        melhor_pontuacao=melhor_pontuacao,
+        melhor_rank=melhor_rank
     )
 
 # ==========================================================
@@ -893,6 +932,41 @@ def quiz_resultado():
             "👑 Você dominou completamente "
             "o Quiz Shinobi!"
         )
+
+    conexao = conectar_banco()
+
+    try:
+        cursor = conexao.cursor()
+
+        cursor.execute(
+            """
+            SELECT melhor_pontuacao
+            FORM usuarios
+            WHERE usuario = %s
+            """,
+            (session["usuario"],)
+        )
+
+        resultado = cursor.fetchone()
+
+        if resultado is not None:
+            melhor_pontuacao = resultado[0]
+
+            if pontos > melhor_pontuacao:
+                cursor.execute(
+                    """
+                    UPDATE usuarios
+                    SET melhor_pontuacao = %s
+                    WHERE usuario = %s
+                    """,
+                    (pontos, session["usuario"])
+                )
+
+                conexao.commit()
+
+
+    finally:
+        conexao.close()
 
 
     return render_template(
