@@ -2297,7 +2297,7 @@ footer p:first-child {
 }
 
 .profile-dropdown[hidden] {
-    display: none;
+    display: none !important;
 }
 
 .profile-option {
