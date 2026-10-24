@@ -2159,3 +2159,191 @@ footer p:first-child {
     }
 
 }
+
+
+
+/* =========================================
+   CENTRAL SHINOBI — CONTROLE DA CONTA
+========================================= */
+
+.account-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+
+    margin-top: 25px;
+}
+
+.account-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 44px;
+    padding: 12px 18px;
+
+    border: 1px solid #303045;
+    border-radius: 9px;
+
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.manage-account {
+    background: #111c30;
+    border-color: #1766a8;
+}
+
+.manage-account:hover {
+    background: #172d4b;
+    border-color: #00ccff;
+    transform: translateY(-2px);
+}
+
+.logout-account {
+    background: #28151d;
+    border-color: #743044;
+}
+
+.logout-account:hover {
+    background: #3a1b27;
+    border-color: #ff526f;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 480px) {
+    .account-actions {
+        flex-direction: column;
+    }
+
+    .account-button {
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
+
+
+/* =========================================
+   MENU DE PERFIL NINJA
+========================================= */
+
+.profile-menu {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 10000;
+}
+
+.profile-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 52px;
+    height: 52px;
+    padding: 0;
+
+    border: 1px solid #3a465c;
+    border-radius: 50%;
+
+    background: #151b29;
+    color: #dce8f8;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.profile-trigger:hover {
+    background: #202c40;
+    border-color: #00ccff;
+    transform: translateY(-2px);
+}
+
+.profile-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-dropdown {
+    position: absolute;
+    top: 62px;
+    left: 0;
+
+    width: 210px;
+    padding: 8px;
+
+    background: #121722;
+    border: 1px solid #30394b;
+    border-radius: 12px;
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+}
+
+.profile-dropdown[hidden] {
+    display: none;
+}
+
+.profile-option {
+    display: block;
+    padding: 12px;
+
+    border-radius: 7px;
+
+    color: #e4eaf5;
+    font-size: 13px;
+    text-decoration: none;
+
+    transition: background-color 0.2s ease;
+}
+
+.profile-option:hover {
+    background: #222b3c;
+}
+
+.profile-separator {
+    height: 1px;
+    margin: 5px 0;
+
+    background: #30394b;
+}
+
+.profile-logout {
+    color: #ff526f;
+}
+
+.profile-logout:hover {
+    background: #351923;
+}
+
+@media (max-width: 480px) {
+    .profile-menu {
+        top: 12px;
+        left: 12px;
+    }
+
+    .profile-trigger {
+        width: 46px;
+        height: 46px;
+    }
+
+    .profile-dropdown {
+        top: 55px;
+    }
+}

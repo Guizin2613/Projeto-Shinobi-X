@@ -23,6 +23,68 @@
 <body>
 
 
+<body>
+
+<!-- ================================= -->
+<!-- MENU DE PERFIL NINJA -->
+<!-- ================================= -->
+
+<div class="profile-menu">
+
+    <button
+        type="button"
+        class="profile-trigger"
+        id="profile-trigger"
+        aria-label="Abrir menu do perfil"
+        aria-expanded="false"
+        aria-controls="profile-dropdown"
+    >
+        <span class="profile-avatar">
+            <svg
+                viewBox="0 0 24 24"
+                width="27"
+                height="27"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+            >
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M4 21a8 8 0 0 1 16 0"></path>
+            </svg>
+        </span>
+    </button>
+
+    <div
+        class="profile-dropdown"
+        id="profile-dropdown"
+        hidden
+    >
+
+        <a
+            href="/gerenciar-conta"
+            class="profile-option"
+        >
+            ⚙️ Gerenciar conta
+        </a>
+
+        <div class="profile-separator"></div>
+
+        <a
+            href="/logout"
+            class="profile-option profile-logout"
+        >
+            ↪ Sair da conta
+        </a>
+
+    </div>
+
+</div>
+
+
+
 <div class="container">
 
 
@@ -30,7 +92,8 @@
     <!-- CABEÇALHO -->
     <!-- ================================= -->
 
-    <header>
+    
+    <header class="central-header">
 
         <h1>
             🍥 PROJECT SHINOBI X 🍥
@@ -44,7 +107,26 @@
             Bem-vindo à Central Ninja!
         </p>
 
+        <div class="account-actions">
+
+            <a
+                href="/gerenciar-conta"
+                class="account-button manage-account"
+            >
+                ⚙️ GERENCIAR CONTA
+            </a>
+
+            <a
+                href="/logout"
+                class="account-button logout-account"
+            >
+                ↪️ SAIR DA CONTA
+            </a>
+
+        </div>
+
     </header>
+
 
 
     <main>
@@ -506,6 +588,61 @@ function confirmarExclusao() {
 
 
 }
+
+
+const profileTrigger =
+    document.getElementById("profile-trigger");
+
+const profileDropdown =
+    document.getElementById("profile-dropdown");
+
+
+profileTrigger.addEventListener("click", function () {
+
+    const menuAberto =
+        profileTrigger.getAttribute("aria-expanded") === "true";
+
+    profileTrigger.setAttribute(
+        "aria-expanded",
+        String(!menuAberto)
+    );
+
+    profileDropdown.hidden = menuAberto;
+
+});
+
+
+document.addEventListener("click", function (event) {
+
+    if (!event.target.closest(".profile-menu")) {
+
+        profileDropdown.hidden = true;
+
+        profileTrigger.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+    }
+
+});
+
+
+document.addEventListener("keydown", function (event) {
+
+    if (event.key === "Escape") {
+
+        profileDropdown.hidden = true;
+
+        profileTrigger.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+    }
+
+});
+
 
 
 </script>
