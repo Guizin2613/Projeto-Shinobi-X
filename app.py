@@ -162,7 +162,7 @@ def login():
 
         senha = request.form["senha"]
 
-                conexao = conectar_banco()
+        conexao = conectar_banco()
 
         try:
             cursor = conexao.cursor()
