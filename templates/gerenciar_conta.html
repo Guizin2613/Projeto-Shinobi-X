@@ -1,0 +1,50 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gerenciar Conta - Projeto Shinobi X</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>⚙️ GERENCIAR CONTA</h1>
+            <p>Cuide da sua identidade ninja!</p>
+        </header>
+
+        <main>
+            <section>
+                <h2>🥷 Sua conta ninja</h2>
+
+                <p>Você está conectado como:</p>
+
+                <h3>{{ usuario }}</h3>
+
+                <p>
+                    Sua jornada no Projeto Shinobi X continua!
+                </p>
+            </section>
+
+            <nav>
+                <a href="/">← Voltar à Central Shinobi</a>
+            </nav>
+        </main>
+
+        <footer>
+            <p>Projeto Shinobi X — Sua jornada ninja começa aqui.</p>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
+```

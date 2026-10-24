@@ -212,6 +212,27 @@ def logout():
 
     return redirect("/login")
 
+
+
+# ==========================================================
+# GERENCIAR CONTA
+# ==========================================================
+
+@app.route("/gerenciar-conta")
+@login_obrigatorio
+def gerenciar_conta():
+
+    if "usuario" not in session:
+        return redirect("/login")
+
+    usuario = session["usuario"]
+
+    return render_template(
+        "gerenciar_conta.html",
+        usuario=usuario
+    )
+
+
 # ==========================================================
 # PERGUNTAS DO QUIZ
 # ==========================================================
