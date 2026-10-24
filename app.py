@@ -79,7 +79,7 @@ def criar_banco():
 
         cursor.execute("""
             ALTER TABLE usuarios
-            ADD COLUMN IF NOT EXISTS melhor_pontuação INTEGER NOT NULL DEFAULT -1
+            ADD COLUMN IF NOT EXISTS melhor_pontuacao INTEGER NOT NULL DEFAULT -1
         """)
 
         conexao.commit()
@@ -948,7 +948,7 @@ def quiz_resultado():
         cursor.execute(
             """
             SELECT melhor_pontuacao
-            FORM usuarios
+            FROM usuarios
             WHERE usuario = %s
             """,
             (session["usuario"],)
