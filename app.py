@@ -162,18 +162,20 @@ def login():
 
         senha = request.form["senha"]
 
-        conexao = conectar_banco()
+                conexao = conectar_banco()
 
-        cursor = conexao.cursor()
+        try:
+            cursor = conexao.cursor()
 
-        cursor.execute(
-            "SELECT senha FROM usuarios WHERE usuario = %s",
-            (usuario,)
-        )
+            cursor.execute(
+                "SELECT senha FROM usuarios WHERE usuario = %s",
+                (usuario,)
+            )
 
-        resultado = cursor.fetchone()
+            resultado = cursor.fetchone()
 
-        conexao.close()
+        finally:
+            conexao.close()
 
         if resultado is None:
 
