@@ -138,83 +138,6 @@
 
 
 
-            <div class="status-card">
-
-                <h3>
-                    🥷 Ninjas
-                </h3>
-
-                <p>
-
-                    {{ ninjas|length }}
-
-                    {% if ninjas|length == 1 %}
-                        registrado
-                    {% else %}
-                        registrados
-                    {% endif %}
-
-                </p>
-
-            </div>
-
-
-            <div class="status-card">
-
-                <h3>
-                    ⚡ Jutsus
-                </h3>
-
-                <p>
-
-                    {{ jutsus|length }}
-
-                    {% if jutsus|length == 1 %}
-                        registrado
-                    {% else %}
-                        registrados
-                    {% endif %}
-
-                </p>
-
-            </div>
-
-
-        </div>
-
-
-        
-            <div class="status-card">
-
-                <h3>
-                    🏆 Melhor pontuação no quiz
-                </h3>
-
-                <p>
-                    {% if melhor_pontuacao >= 0 %}
-                        {{ melhor_pontuacao }}/5
-                    {% else %}
-                        Ainda não fez o quiz
-                    {% endif %}
-                </p>
-
-            </div>
-
-
-            <div class="status-card">
-
-                <h3>
-                    🍥 Rank Ninja
-                </h3>
-
-                <p>
-                    {{ melhor_rank }}
-                </p>
-
-            </div>
-
-
-
         <!-- ================================= -->
         <!-- MENU PRINCIPAL -->
         <!-- ================================= -->
@@ -527,6 +450,43 @@
 
             {% endif %}
 
+
+        </section>
+
+        
+        <!-- ================================= -->
+        <!-- RESULTADOS DO QUIZ -->
+        <!-- ================================= -->
+
+        <section class="registered-jutsus">
+
+            <h2>🏆 Resultados do Quiz</h2>
+
+            <div class="jutsu-list">
+
+                <div class="registered-jutsu-card">
+
+                    <h3>🎯 Melhor pontuação</h3>
+
+                    <p>
+                        {% if melhor_pontuacao >= 0 %}
+                            {{ melhor_pontuacao }}/5
+                        {% else %}
+                            Ainda não fez o quiz
+                        {% endif %}
+                    </p>
+
+                </div>
+
+                <div class="registered-jutsu-card">
+
+                    <h3>🍥 Rank Ninja</h3>
+
+                    <p>{{ melhor_rank }}</p>
+
+                </div>
+
+            </div>
 
         </section>
 
