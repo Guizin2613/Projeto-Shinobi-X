@@ -82,6 +82,19 @@ def criar_banco():
             ADD COLUMN IF NOT EXISTS melhor_pontuacao INTEGER NOT NULL DEFAULT -1
         """)
 
+        # Nome de exibição do perfil ninja
+        cursor.execute("""
+        ALTER TABLE usuarios
+        ADD COLUMN IF NOT EXISTS nome_perfil TEXT
+        """)
+
+        # Preenche os perfis antigos com o nome de usuário atual
+        cursor.execute("""
+        UPDATE usuarios
+        SET nome_perfil = usuario
+        WHERE nome_perfil IS NULL OR nome_perfil = ''
+        """)
+
         conexao.commit()
 
     finally:
@@ -225,19 +238,72 @@ def logout():
 # GERENCIAR CONTA
 # ==========================================================
 
-@app.route("/gerenciar-conta")
+
+@app.route("/gerenciar-conta", methods=["GET", "POST"])
 @login_obrigatorio
 def gerenciar_conta():
 
-    if "usuario" not in session:
-        return redirect("/login")
-
     usuario = session["usuario"]
+    mensagem = None
+
+    conexao = conectar_banco()
+
+    try:
+        cursor = conexao.cursor()
+
+        if request.method == "POST":
+
+            nome_perfil = request.form.get(
+                "nome_perfil", ""
+            ).strip()
+
+            if not nome_perfil:
+                mensagem = "O nome do perfil não pode ficar vazio."
+
+            elif len(nome_perfil) > 30:
+                mensagem = "O nome do perfil deve ter até 30 caracteres."
+
+            else:
+                cursor.execute(
+                    """
+                    UPDATE usuarios
+                    SET nome_perfil = %s
+                    WHERE usuario = %s
+                    """,
+                    (nome_perfil, usuario)
+                )
+
+                conexao.commit()
+
+                mensagem = "Nome do perfil atualizado com sucesso!"
+
+        cursor.execute(
+            """
+            SELECT nome_perfil
+            FROM usuarios
+            WHERE usuario = %s
+            """,
+            (usuario,)
+        )
+
+        resultado = cursor.fetchone()
+
+        nome_perfil = (
+            resultado[0]
+            if resultado and resultado[0]
+            else usuario
+        )
+
+    finally:
+        conexao.close()
 
     return render_template(
         "gerenciar_conta.html",
-        usuario=usuario
+        usuario=usuario,
+        nome_perfil=nome_perfil,
+        mensagem=mensagem
     )
+
 
 
 # ==========================================================

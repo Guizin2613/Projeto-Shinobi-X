@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -21,24 +21,53 @@
         </header>
 
         <main>
+
             <section>
                 <h2>🥷 Sua conta ninja</h2>
 
-                <p>Você está conectado como:</p>
-
+                <p>Nome de usuário para entrar:</p>
                 <h3>{{ usuario }}</h3>
 
-                <p>
-                    Sua jornada no Projeto Shinobi X continua!
-                </p>
+                <p>Esse nome é usado no login e não será alterado.</p>
+            </section>
+
+            <section>
+                <h2>👤 Nome do perfil</h2>
+
+                <p>Escolha como seu nome será exibido no site.</p>
+
+                {% if mensagem %}
+                    <p>{{ mensagem }}</p>
+                {% endif %}
+
+                <form method="POST">
+
+                    <label for="nome_perfil">
+                        Nome de exibição
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nome_perfil"
+                        name="nome_perfil"
+                        value="{{ nome_perfil }}"
+                        maxlength="30"
+                        required
+                    >
+
+                    <button type="submit" class="menu-button">
+                        💾 Salvar alterações
+                    </button>
+
+                </form>
             </section>
 
             <nav>
-                
                 <a href="/" class="menu-button">
                     🏠 Voltar para a Central
                 </a>
             </nav>
+
         </main>
 
         <footer>
@@ -50,4 +79,3 @@
 </body>
 
 </html>
-```
