@@ -2414,3 +2414,18 @@ footer p:first-child {
         max-width: 100%;
     }
 }
+
+
+/* ============================= */
+/* STATUS DO SISTEMA             */
+/* ============================= */
+
+.status-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.status-card {
+    text-align: center;
+}
