@@ -2347,3 +2347,70 @@ footer p:first-child {
         top: 55px;
     }
 }
+
+
+
+
+/* ============================= */
+/* PERFIL - GERENCIAR CONTA      */
+/* ============================= */
+
+.perfil-secao {
+    text-align: center;
+}
+
+.perfil-titulo {
+    font-size: 30px;
+    margin-bottom: 14px;
+}
+
+.perfil-descricao {
+    font-size: 18px;
+    margin-bottom: 24px;
+}
+
+.perfil-form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    max-width: 100%;
+    text-align: center;
+}
+
+.perfil-form label {
+    font-size: 19px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.perfil-form input {
+    width: 100%;
+    max-width: 320px;
+    box-sizing: border-box;
+    font-size: 22px;
+    text-align: center;
+    padding: 12px;
+    margin: 0;
+    border: 2px solid #29293a;
+    border-radius: 10px;
+    background-color: #0e0e16;
+    color: white;
+}
+
+.perfil-form button {
+    margin: 8px auto 0;
+    font-size: 16px;
+}
+
+@media (max-width: 600px) {
+    .perfil-form {
+        flex-direction: column;
+    }
+
+    .perfil-form input {
+        max-width: 100%;
+    }
+}

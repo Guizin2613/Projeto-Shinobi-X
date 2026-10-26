@@ -31,36 +31,43 @@
                 <p>Esse nome é usado no login e não será alterado.</p>
             </section>
 
-            <section>
-                <h2>👤 Nome do perfil</h2>
+            
+            
+<section class="perfil-secao">
 
-                <p>Escolha como seu nome será exibido no site.</p>
+    <h2 class="perfil-titulo">NOME DO PERFIL</h2>
 
-                {% if mensagem %}
-                    <p>{{ mensagem }}</p>
-                {% endif %}
+    <p class="perfil-descricao">
+        Escolha como seu nome será exibido no site.
+    </p>
 
-                <form method="POST">
+    {% if mensagem %}
+        <p>{{ mensagem }}</p>
+    {% endif %}
 
-                    <label for="nome_perfil">
-                        Nome de exibição
-                    </label>
+    <form method="POST" class="perfil-form">
 
-                    <input
-                        type="text"
-                        id="nome_perfil"
-                        name="nome_perfil"
-                        value="{{ nome_perfil }}"
-                        maxlength="30"
-                        required
-                    >
+        <label for="nome_perfil">
+            Nome de exibição:
+        </label>
 
-                    <button type="submit" class="menu-button">
-                        💾 Salvar alterações
-                    </button>
+        <input
+            type="text"
+            id="nome_perfil"
+            name="nome_perfil"
+            value="{{ nome_perfil }}"
+            maxlength="30"
+            required
+        >
 
-                </form>
-            </section>
+            <button type="submit" class="menu-button">
+                SALVAR ALTERAÇÕES
+            </button>
+
+        </form>
+
+
+    </section>
 
             <nav>
                 <a href="/" class="menu-button">
