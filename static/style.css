@@ -2435,59 +2435,43 @@ footer p:first-child {
 
 
 
+
 /* ========================================= */
 /* TRANSIÇÕES LATERAIS — SHINOBI X           */
 /* ========================================= */
 
-@view-transition {
-    navigation: auto;
-}
-
-/* Página atual saindo pela esquerda */
-
-::view-transition-old(root) {
-    animation: paginaSaindo 1s ease-in both;
-}
-
-/* Nova página entrando pela direita */
-
-::view-transition-new(root) {
-    animation: paginaEntrando 1s ease-out both;
-}
-
-/* Animação de saída */
-
-@keyframes paginaSaindo {
+@keyframes transicaoEntrada {
     from {
-        transform: translateX(0);
-        opacity: 1;
+        opacity: 0.98;
+        transform: translateX(35px);
     }
 
     to {
-        transform: translateX(-100%);
-        opacity: 0.98;
+        opacity: 1;
+        transform: translateX(0);
     }
 }
 
-/* Animação de entrada */
+body.pagina-entrando {
+    animation: transicaoEntrada 1s ease-out both;
+}
 
-@keyframes paginaEntrando {
-    from {
-        transform: translateX(100%);
-        opacity: 0.98;
-    }
+body.pagina-saindo {
+    opacity: 0.98;
+    transform: translateX(-35px);
 
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
+    transition:
+        opacity 1s ease-in-out,
+        transform 1s ease-in-out;
 }
 
 /* Respeita quem prefere menos animações */
 
 @media (prefers-reduced-motion: reduce) {
-    ::view-transition-old(root),
-    ::view-transition-new(root) {
+    body.pagina-entrando,
+    body.pagina-saindo {
         animation: none;
+        transition: none;
+        transform: none;
     }
 }
