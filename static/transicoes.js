@@ -4,12 +4,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // Anima a entrada da página
     document.body.classList.add("pagina-entrando");
 
-    // Prepara as transições dos links internos
+    // Verifica se o usuário prefere menos animações
+    const movimentoReduzido = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    // Prepara as transições dos links
     document.querySelectorAll("a[href]").forEach((link) => {
 
         link.addEventListener("click", (evento) => {
 
-            // Ignora atalhos, outras abas e cliques especiais
             if (
                 evento.ctrlKey ||
                 evento.shiftKey ||
@@ -22,33 +26,43 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            const destino = new URL(link.href, window.location.href);
+            const href = link.getAttribute("href");
 
-            // Não anima links externos, âncoras ou a mesma página
             if (
-                destino.origin !== window.location.origin ||
-                destino.pathname === window.location.pathname &&
-                destino.search === window.location.search &&
-                destino.hash
+                link.hasAttribute("data-sem-transicao") ||
+                !href ||
+                href.startsWith("#") ||
+                href.startsWith("javascript:")
             ) {
                 return;
             }
 
-            // Deixa o navegador cuidar de links especiais
-            if (
-                link.href.startsWith("javascript:") ||
-                link.hasAttribute("data-sem-transicao")
-            ) {
+            const destino = new URL(link.href, window.location.href);
+
+            // Só anima a navegação dentro do próprio site
+            if (destino.origin !== window.location.origin) {
+                return;
+            }
+
+            // Não anima se o endereço já for o atual
+            if (destino.href === window.location.href) {
+                return;
+            }
+
+            // Respeita a preferência por movimento reduzido
+            if (movimentoReduzido) {
                 return;
             }
 
             evento.preventDefault();
 
+            // Inicia a saída lateral
             document.body.classList.add("pagina-saindo");
 
+            // Aguarda a animação terminar antes de navegar
             setTimeout(() => {
                 window.location.href = destino.href;
-            }, 200);
+            }, 1000);
 
         });
 
