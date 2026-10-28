@@ -305,6 +305,146 @@ def gerenciar_conta():
     )
 
 
+    
+# ==========================================================
+# CENTRAL NINJA — NINJA PRINCIPAL
+# ==========================================================
+
+@app.route(
+    "/ninja-principal",
+    methods=["GET", "POST"]
+)
+@login_obrigatorio
+def ninja_principal():
+
+    usuario = session["usuario"]
+    mensagem = None
+
+    conexao = conectar_banco()
+
+    try:
+        cursor = conexao.cursor()
+
+        if request.method == "POST":
+
+            nome = request.form.get(
+                "nome", ""
+            ).strip()
+
+            cla = request.form.get(
+                "cla", ""
+            ).strip()
+
+            elemento = request.form.get(
+                "elemento", ""
+            ).strip()
+
+            vila = request.form.get(
+                "vila", ""
+            ).strip()
+
+            kekkei_genkai = request.form.get(
+                "kekkei_genkai", ""
+            ).strip()
+
+            if not nome or not cla or not elemento or not vila:
+
+                mensagem = (
+                    "Preencha todos os campos obrigatórios."
+                )
+
+            elif (
+                len(nome) > 50
+                or len(cla) > 50
+                or len(elemento) > 30
+                or len(vila) > 50
+                or len(kekkei_genkai) > 500
+            ):
+
+                mensagem = (
+                    "Um ou mais campos ultrapassaram "
+                    "o limite de caracteres."
+                )
+
+            else:
+
+                cursor.execute(
+                    """
+                    INSERT INTO ninja_principal (
+                        usuario,
+                        nome,
+                        cla,
+                        elemento,
+                        vila,
+                        kekkei_genkai
+                    )
+                    VALUES (%s, %s, %s, %s, %s, %s)
+
+                    ON CONFLICT (usuario)
+                    DO UPDATE SET
+                        nome = EXCLUDED.nome,
+                        cla = EXCLUDED.cla,
+                        elemento = EXCLUDED.elemento,
+                        vila = EXCLUDED.vila,
+                        kekkei_genkai = EXCLUDED.kekkei_genkai,
+                        atualizado_em = CURRENT_TIMESTAMP
+                    """,
+                    (
+                        usuario,
+                        nome,
+                        cla,
+                        elemento,
+                        vila,
+                        kekkei_genkai
+                    )
+                )
+
+                conexao.commit()
+
+                mensagem = (
+                    "Ninja Principal salvo com sucesso!"
+                )
+
+        cursor.execute(
+            """
+            SELECT
+                nome,
+                cla,
+                elemento,
+                vila,
+                kekkei_genkai,
+                rank_ninja
+            FROM ninja_principal
+            WHERE usuario = %s
+            """,
+            (usuario,)
+        )
+
+        resultado = cursor.fetchone()
+
+        ninja = None
+
+        if resultado:
+            ninja = {
+                "nome": resultado[0],
+                "cla": resultado[1],
+                "elemento": resultado[2],
+                "vila": resultado[3],
+                "kekkei_genkai": resultado[4],
+                "rank_ninja": resultado[5]
+            }
+
+    finally:
+        conexao.close()
+
+    return render_template(
+        "ninja_principal.html",
+        ninja=ninja,
+        mensagem=mensagem
+    )
+
+
+
 
 # ==========================================================
 # PERGUNTAS DO QUIZ
@@ -1034,6 +1174,32 @@ def quiz_resultado():
                     """,
                     (pontos, session["usuario"])
                 )
+
+                # ==============================
+                # NINJA PRINCIPAL
+                # ==============================
+
+                cursor.execute("""
+                    CREATE TABLE IF NOT EXISTS ninja_principal (
+                        usuario TEXT PRIMARY KEY
+                        REFERENCES usuarios(usuario)
+                        ON DELETE CASCADE,
+
+                    nome TEXT NOT NULL,
+                    cla TEXT NOT NULL,
+                    elemento TEXT NOT NULL,
+                    vila TEXT NOT NULL,
+
+                    kekkei_genkai TEXT NOT NULL DEFAULT '',
+
+                    rank_ninja TEXT NOT NULL
+                        DEFAULT 'Estudante da Academia',
+
+                    atualizado_em TIMESTAMPTZ
+                        NOT NULL DEFAULT CURRENT_TIMESTAMP 
+
+                )
+            """)
 
                 conexao.commit()
 

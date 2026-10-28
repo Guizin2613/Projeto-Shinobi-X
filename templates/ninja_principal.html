@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Central Ninja | Projeto Shinobi X</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <h1>Central Ninja</h1>
+        <p>Crie e gerencie sua identidade shinobi.</p>
+    </header>
+
+    <main class="ninja-creator">
+
+        <section class="menu-section">
+
+            <h2>Ninja Principal</h2>
+
+            <p>
+                Este é o seu ninja oficial no Projeto Shinobi X.
+            </p>
+
+            <p>
+                <strong>Rank atual:</strong>
+                {{ ninja.rank_ninja if ninja else 'Estudante da Academia' }}
+            </p>
+
+            {% if mensagem %}
+                <p class="mensagem">{{ mensagem }}</p>
+            {% endif %}
+
+            <form method="POST" action="{{ url_for('ninja_principal') }}">
+
+                <div class="form-group">
+                    <label for="nome">Nome do ninja</label>
+
+                    <input
+                        type="text"
+                        id="nome"
+                        name="nome"
+                        maxlength="50"
+                        value="{{ ninja.nome if ninja else '' }}"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="cla">Clã</label>
+
+                    <input
+                        type="text"
+                        id="cla"
+                        name="cla"
+                        maxlength="50"
+                        value="{{ ninja.cla if ninja else '' }}"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="elemento">Elemento principal</label>
+
+                    <select id="elemento" name="elemento" required>
+
+                        <option value="">Selecione um elemento</option>
+
+                        {% for elemento in ['Fogo', 'Água', 'Raio', 'Vento', 'Terra', 'Outro'] %}
+                            <option
+                                value="{{ elemento }}"
+                                {% if ninja and ninja.elemento == elemento %}selected{% endif %}
+                            >
+                                {{ elemento }}
+                            </option>
+                        {% endfor %}
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="vila">Vila ninja</label>
+
+                    <select id="vila" name="vila" required>
+
+                        <option value="">Selecione uma vila</option>
+
+                        {% for vila in ['Konohagakure', 'Sunagakure', 'Kirigakure', 'Iwagakure', 'Kumogakure'] %}
+                            <option
+                                value="{{ vila }}"
+                                {% if ninja and ninja.vila == vila %}selected{% endif %}
+                            >
+                                {{ vila }}
+                            </option>
+                        {% endfor %}
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="kekkei_genkai">
+                        Kekkei Genkai (opcional)
+                    </label>
+
+                    <input
+                        type="text"
+                        id="kekkei_genkai"
+                        name="kekkei_genkai"
+                        maxlength="500"
+                        value="{{ ninja.kekkei_genkai if ninja else '' }}"
+                        placeholder="Ex.: Sharingan, Shikotsumyaku..."
+                    >
+                </div>
+
+                <button type="submit" class="create-button">
+                    SALVAR MEU NINJA PRINCIPAL
+                </button>
+
+            </form>
+
+            <div class="menu-section">
+
+                <a href="{{ url_for('index') }}" class="menu-button">
+                    VOLTAR À CENTRAL SHINOBI
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
