@@ -95,6 +95,33 @@ def criar_banco():
         WHERE nome_perfil IS NULL OR nome_perfil = ''
         """)
 
+        
+        # ==============================
+        # NINJA PRINCIPAL
+        # ==============================
+
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS ninja_principal (
+                usuario TEXT PRIMARY KEY
+                    REFERENCES usuarios(usuario)
+                    ON DELETE CASCADE,
+
+                nome TEXT NOT NULL,
+                cla TEXT NOT NULL,
+                elemento TEXT NOT NULL,
+                vila TEXT NOT NULL,
+
+                kekkei_genkai TEXT NOT NULL DEFAULT '',
+
+                rank_ninja TEXT NOT NULL
+                    DEFAULT 'Estudante da Academia',
+
+                atualizado_em TIMESTAMPTZ
+                    NOT NULL DEFAULT CURRENT_TIMESTAMP
+            )
+        """)
+
+
         conexao.commit()
 
     finally:
@@ -105,6 +132,9 @@ def criar_banco():
 
 
 criar_banco()
+
+
+
 
 
 
